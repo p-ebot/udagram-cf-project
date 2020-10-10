@@ -1,0 +1,58 @@
+Parameters:
+  EnvironmentName:
+    Description: An environment name that will be prefixed to resource names
+    Type: String
+
+Resources:
+  IAMROLE:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "${EnvironmentName}-IAM-Role"
+      AssumeRolePolicyDocument:
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - ec2.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: "/"
+
+  IAMPolicies:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: !Sub "${EnvironmentName}-IAM-Policies"
+      PolicyDocument:
+        Statement:
+        - Effect: Allow
+          Action: 
+          - "ec2:DescribeAddresses"
+          - "ec2:AllocateAddress"
+          - "ec2:DescribeInstances"
+          - "ec2:AssociateAddress"
+          - "ssm:Get*"
+          - "s3:Get*"
+          Resource: '*'
+      Roles:
+      - !Ref IAMROLE
+
+  IAMInstanceProfile:
+    Type: "AWS::IAM::InstanceProfile"
+    Properties:
+      Path: "/"
+      Roles:
+      - !Ref IAMROLE    
+
+Outputs: 
+  Role:
+    Description: instance Role
+    Value: !Ref IAMROLE
+    Export:
+      Name: !Sub ${EnvironmentName}-ROLE
+
+  InstanceProfile:
+    Description: Instance profile of Role
+    Value: !Ref IAMInstanceProfile
+    Export:
+      Name: !Sub ${EnvironmentName}-InstanceProfile
+

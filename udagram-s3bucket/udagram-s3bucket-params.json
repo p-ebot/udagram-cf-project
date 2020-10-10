@@ -1,0 +1,11 @@
+[
+	{
+		"ParameterKey": "EnvironmentName",
+		"ParameterValue": "UdagramCFProject"
+    },
+	{
+		"ParameterKey": "NameBucket",
+		"ParameterValue": "udagramcfproject-s3bucket-store"
+    }
+
+]
