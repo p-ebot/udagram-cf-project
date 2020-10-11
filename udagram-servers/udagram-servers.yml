@@ -11,7 +11,8 @@ Parameters:
     
   InstanceAMI:
       Type: String
-      Default: ami-07ebfd5b3428b6f4d
+      Default: ami-06e54d05255faf8f6
+      #ubuntu AMI
       Description: AMI of a bastion host instance to use
 
 Resources:
@@ -39,24 +40,29 @@ Resources:
   WebAppSG:
       Type: AWS::EC2::SecurityGroup
       Properties:
-        GroupDescription:  Allow ssh connections from Bastion HOST
-        VpcId:
-            Fn::ImportValue:
-              !Sub "${EnvironmentName}-VPCID"
-        SecurityGroupIngress:
+          GroupDescription:  Allow ssh connections from Bastion HOST
+          VpcId:
+              Fn::ImportValue:
+                !Sub "${EnvironmentName}-VPCID"
+          SecurityGroupIngress:
+            - IpProtocol: tcp
+              FromPort: 80
+              ToPort: 80
+              CidrIp: 0.0.0.0/0
             - IpProtocol: tcp
               FromPort: 22
               ToPort: 22
               CidrIp: 0.0.0.0/0
-        SecurityGroupEgress:   
+          SecurityGroupEgress:
             - IpProtocol: tcp
-              FromPort: 80
-              ToPort: 80
-              SourceSecurityGroupId: !Ref LoadBSGroup
-        Tags:
-            - Key: name
-              Value: !Sub ${EnvironmentName} webServerGroup of EC2 instances
-     
+              FromPort: 0
+              ToPort: 65535
+              CidrIp: 0.0.0.0/0 
+              
+          Tags:
+              - Key: name
+                Value: !Sub ${EnvironmentName} webServerGroup of EC2 instances
+      
   AppLaunchConfig:
       Type: AWS::AutoScaling::LaunchConfiguration
       Properties:
@@ -133,7 +139,7 @@ Resources:
         HealthCheckProtocol: HTTP
         HealthCheckTimeoutSeconds: 8
         HealthyThresholdCount: 2
-        Port: 8080
+        Port: 80
         Protocol: HTTP
         UnhealthyThresholdCount: 5
         VpcId: 
