@@ -10,15 +10,11 @@ Parameters:
 
 Resources:
 
-  bucketS3:
+  UagramBucketS3:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Ref NameBucket
-      AccessControl: PublicRead
-      WebsiteConfiguration:
-        IndexDocument: index.html
-        ErrorDocument: error.html
-      DeletionPolicy: Delete
+    DeletionPolicy: Delete
 
  
       
