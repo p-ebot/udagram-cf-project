@@ -150,12 +150,11 @@ Outputs:
  
   WebsiteURL:
       Description: DNS Name of the web application throught the Load Balancer
-          Fn::Join: [ "http://" !GetAtt <<WebAppLB>>.DNSName ] 
-          Export:
-              Name: !Sub ${EnvironmentName}-DNS-NAME          
-          
-              
-
+      Value: !GetAtt WebAppLB.DNSName
+      Export:
+        Name: !Sub ${EnvironmentName}-DNS-NAME          
+        
+            
+    
       
         
-          
