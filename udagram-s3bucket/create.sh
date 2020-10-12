@@ -1,0 +1,1 @@
+./update.sh udagrams3bucket udagram-s3bucket/udagram-s3bucket.yml udagram-s3bucket/udagram-s3bucket-params.json
