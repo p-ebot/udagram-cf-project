@@ -93,11 +93,11 @@ Once you have checked all these items, you are ready to submit!
 
                             SOLUTION
 
-1. Create a network stack
+1. Create a network stack:
      ./create.sh udagramcfproject udagram-network/udagram-network.yml udagram-network/udagram-network-params.json   
 
-2. create a server stack
+2. create a server stack:
     ./update.sh udagramservers udagram-servers/udagram-servers.yml udagram-servers/udagram-servers-params.json
 
-3. DNS name
+3. DNS name:
       udagr-WebAp-1DQFYJP0160E1-918041946.us-west-2.elb.amazonaws.com    
