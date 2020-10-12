@@ -144,7 +144,15 @@ Resources:
         UnhealthyThresholdCount: 5
         VpcId: 
           Fn::ImportValue:
-            Fn::Sub: "${EnvironmentName}-VPCID"        
+            Fn::Sub: "${EnvironmentName}-VPCID"    
+            
+Outputs:
+ 
+  WebsiteURL:
+      Description: DNS Name of the web application throught the Load Balancer
+          Fn::Join: [ "http://" !GetAtt <<WebAppLB>>.DNSName ] 
+          Export:
+              Name: !Sub ${EnvironmentName}-DNS-NAME          
           
               
 
