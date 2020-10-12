@@ -6,8 +6,8 @@ Creating this project will give you the hands-on experience you need to confiden
 
 There will be two parts to this project:
 
-    You'll first develop a diagram that you can present as part of your portfolio and as a visual aid to understand the CloudFormation script.
-    The second part is to interpret the instructions as well as your own diagram and create a matching CloudFormation script.
+You'll first develop a diagram that you can present as part of your portfolio and as a visual aid to understand the CloudFormation script.
+The second part is to interpret the instructions as well as your own diagram and create a matching CloudFormation script.
 
 
                         PROBLEM
@@ -20,6 +20,7 @@ This needs to be done in an automated fashion so that the infrastructure can be 
 
 
                         PROJECT REQUIREMENTS
+
 Server specs
 
 
