@@ -101,3 +101,7 @@ Once you have checked all these items, you are ready to submit!
 
 3. DNS name:
       udagr-WebAp-1DQFYJP0160E1-918041946.us-west-2.elb.amazonaws.com    
+      
+      
+      
+      
